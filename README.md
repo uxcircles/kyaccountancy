@@ -27,8 +27,8 @@ Then open http://localhost:5180.
 The HTML is generated so the header, footer and contact details stay consistent across 15 pages:
 
 - Contact details, header, footer, UI strings: `_build/layout.py`
-- Page content (all three languages side by side, via `L(english, 中文, 한국어)`): `_build/pages.py`
-- Styles: `assets/css/style.css` · Behaviour: `assets/js/main.js`
+- Services and news text (all three languages side by side, via `L(english, 中文, 한국어)`): `_build/content.py`
+- Page layouts and headlines: `_build/pages.py` (a `|` in a headline marks a line break for the reveal animation)
 
 Rebuild after editing (Python 3, no dependencies):
 
@@ -51,14 +51,38 @@ Reviewed on kyaccountancy.com (Wix) in October 2026:
 
 ## What the redesign adds
 
-- Navy and gold taken from the KY diamond logo; typographic design with no stock photos
+**Design.** An editorial look built from the KY diamond logo: deep navy, gold, warm paper, and oversized Instrument Serif headlines (Noto Serif SC / KR for Chinese and Korean). No stock photos.
+
+**Motion** (all of it switched off for visitors who ask their device for reduced motion):
+
+- The KY diamond draws itself in the hero, turns as you scroll and drifts with the mouse
+- The hero's gold word rotates through English → 中文 → 한국어
+- Headlines slide up line by line; the "who we are" statement lights up word by word as you scroll; numbers count up
+- Gold marquee of services in three languages
+- Services as a big numbered list; each row fills navy on hover
+- "How we work" stays pinned while a gold progress line runs down the steps
+- Giant HMRC countdown in days, and a giant "Let's talk" call to action
+- Curtain transition between pages, magnetic buttons, a small blend-mode cursor on desktop, film-grain texture, oversized wordmark in the footer
+
+**Useful features:**
+
 - Fixed **Call / Message / Email** bar on phones; tap-to-open WeChat and WhatsApp links (decoded from the existing QR codes) as well as the QR codes
 - Live **"Open now / Closed · opens 9am tomorrow"** status on London time
-- **Next HMRC deadline** countdown and a list of upcoming Self Assessment dates, worked out from today's date
-- **Limited company deadline calculator** — enter a year end, get the Companies House accounts, Corporation Tax payment and CT600 dates
-- One services page with all five service areas, each with a current "Good to know" note (Making Tax Digital for Income Tax, Companies House ID verification, current UK/EU VAT thresholds, 60-day property CGT)
+- **Next HMRC deadline** countdown and upcoming Self Assessment dates, worked out from today's date
+- **Limited company deadline calculator**: enter a year end, get the Companies House accounts, Corporation Tax payment and CT600 dates
+- One services page covering all five service areas, each with a current "Good to know" note (Making Tax Digital for Income Tax, Companies House ID verification, current UK/EU VAT thresholds, 60-day property CGT)
 - Contact form that opens the visitor's email app with the enquiry pre-filled (service, preferred language)
 - Correct `tel:` and `mailto:` links, `AccountingService` structured data, per-page titles and descriptions in each language
+
+## Structure
+
+```
+_build/layout.py     header, footer, page shell, contact details, UI strings
+_build/content.py    services, accreditations, news (three languages side by side)
+_build/pages.py      page templates
+assets/css/style.css
+assets/js/main.js    motion, menu, open-now status, deadlines, calculator, form
+```
 
 ## For the firm to check before launch
 
