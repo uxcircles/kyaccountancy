@@ -48,7 +48,7 @@ UI = {
     "call": L("Call", "致电", "전화"),
     "email": L("Email", "电邮", "이메일"),
     "chat_short": L("Message", "微信", "메시지"),
-    "talk": L("Let’s talk", "联系我们", "상담 문의"),
+    "talk": L("Book a consultation", "预约咨询", "상담 예약"),
     "hours": L("Opening hours", "办公时间", "영업시간"),
     "hours_days": L("Monday – Friday", "周一至周五", "월요일 – 금요일"),
     "hours_time": L("9:00am – 5:30pm", "上午 9:00 – 下午 5:30", "오전 9:00 – 오후 5:30"),
@@ -178,7 +178,7 @@ def header(lang, page):
     </a>
     <nav class="main-nav" aria-label="Main">{nav}</nav>
     {lang_switch(lang, page)}
-    <a class="btn btn-pill header-cta" href="contact.html" data-magnetic>{roll(r(UI['talk'], lang))}</a>
+    <a class="btn btn-pill header-cta" href="contact.html">{roll(r(UI['talk'], lang))}</a>
     <button class="menu-btn" aria-expanded="false" aria-controls="menu"><span class="menu-lines"><span></span><span></span></span><span class="sr">{r(UI['menu'], lang)}</span></button>
   </div>
 </header>
@@ -203,7 +203,7 @@ def footer(lang, page):
     <div class="footer-top">
       <h2 class="footer-q split">{lines(r(UI['footer_q'], lang))}</h2>
       <div class="footer-contact">
-        <a class="big-link" href="mailto:{EMAIL}" data-cursor="mail">{EMAIL}</a>
+        <a class="big-link" href="mailto:{EMAIL}">{EMAIL}</a>
         <a class="big-link" href="tel:{PHONE_TEL}">{PHONE_INTL}</a>
       </div>
     </div>
@@ -277,13 +277,11 @@ def page(lang, name, title, description, body, body_class=""):
 <script type="application/ld+json">{schema}</script>
 </head>
 <body class="{body_class}">
-<div class="curtain" aria-hidden="true"><img src="{a}img/logo-mark.png" alt="" width="56" height="64"></div>
 {header(lang, name)}
 <main id="main">
 {body}
 </main>
 {footer(lang, name)}
-<div class="cursor" aria-hidden="true"><span></span></div>
 <script>window.KY = {js};</script>
 <script src="{a}js/main.js" defer></script>
 </body>

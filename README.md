@@ -53,16 +53,15 @@ Reviewed on kyaccountancy.com (Wix) in October 2026:
 
 **Design.** An editorial look built from the KY diamond logo: deep navy, gold, warm paper, and oversized Instrument Serif headlines (Noto Serif SC / KR for Chinese and Korean). No stock photos.
 
-**Motion** (all of it switched off for visitors who ask their device for reduced motion):
+**Motion** is deliberately restrained, as befits an accountancy firm, and switches off entirely for visitors who ask their device for reduced motion:
 
-- The KY diamond draws itself in the hero, turns as you scroll and drifts with the mouse
-- The hero's gold word rotates through English → 中文 → 한국어
-- Headlines slide up line by line; the "who we are" statement lights up word by word as you scroll; numbers count up
-- Gold marquee of services in three languages
-- Services as a big numbered list; each row fills navy on hover
-- "How we work" stays pinned while a gold progress line runs down the steps
-- Giant HMRC countdown in days, and a giant "Let's talk" call to action
-- Curtain transition between pages, magnetic buttons, a small blend-mode cursor on desktop, film-grain texture, oversized wordmark in the footer
+- The KY diamond in the hero draws itself once, then stays still
+- Headlines slide up line by line and paragraphs fade in, once, as they come into view
+- Statistics and the HMRC countdown count up once
+- A gold progress line runs down the "How we work" steps
+- Quiet hover states: service rows tint and their arrow turns navy
+
+The accreditation logos (ACCA, AAT, CISI, AIA) sit directly under the hero.
 
 **Useful features:**
 
@@ -81,7 +80,7 @@ _build/layout.py     header, footer, page shell, contact details, UI strings
 _build/content.py    services, accreditations, news (three languages side by side)
 _build/pages.py      page templates
 assets/css/style.css
-assets/js/main.js    motion, menu, open-now status, deadlines, calculator, form
+assets/js/main.js    reveals, menu, open-now status, deadlines, calculator, form
 ```
 
 ## For the firm to check before launch

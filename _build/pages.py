@@ -49,7 +49,7 @@ def page_hero(lang, n, eyebrow, title, lead=None):
     lead_html = f'<p class="page-lead reveal-up">{r(lead, lang)}</p>' if lead else ""
     return f"""
 <section class="page-hero dark">
-  <div class="hero-diamond hero-diamond-sm" data-parallax>{DIAMOND_SVG}</div>
+  <div class="hero-diamond hero-diamond-sm">{DIAMOND_SVG}</div>
   <div class="wrap">
     {label(n, eyebrow, lang)}
     <h1 class="display split">{lines(r(title, lang))}</h1>
@@ -58,19 +58,12 @@ def page_hero(lang, n, eyebrow, title, lead=None):
 </section>"""
 
 
-def marquee():
-    words = ["Limited companies", "Self Assessment", "增值税 VAT", "법인세", "Payroll", "Amazon &amp; EU VAT",
-             "慈善机构", "Making Tax Digital", "자영업", "Capital Gains Tax", "公司注册", "Bookkeeping"]
-    items = "".join(f'<span>{w}</span><i>✦</i>' for w in words)
-    return f'<div class="marquee" aria-hidden="true"><div class="marquee-track">{items}{items}</div></div>'
-
-
 def cta_band(lang):
     return f"""
 <section class="section cta-sec cta-sec-sm">
   <div class="wrap">
-    <a class="giant-cta" href="contact.html" data-cursor="go">
-      <span class="giant-cta-t split">{lines(r(L('Questions?|Let’s talk.', '有疑问？|聊一聊。', '궁금하세요?|이야기해요.'), lang))}</span>
+    <a class="giant-cta" href="contact.html">
+      <span class="giant-cta-t split">{lines(r(L('Questions about|your situation?', '对您的情况|有疑问？', '궁금한 점이|있으신가요?'), lang))}</span>
       <span class="giant-cta-c">{ICON['arrow-ne']}</span>
     </a>
   </div>
@@ -79,13 +72,9 @@ def cta_band(lang):
 
 # ---------------------------------------------------------------- home
 def home(lang):
-    rot = {"en": ["English.", "中文.", "한국어."], "zh": ["中文", "English", "한국어"], "ko": ["한국어", "English", "中文"]}[lang]
-    rotator = f'<em class="rotator" data-words="{"|".join(rot)}"><span>{rot[0]}</span></em>'
-    h1 = {
-        "en": f'<span class="line"><span>Accounts &amp; tax,</span></span><span class="line"><span>explained in</span></span><span class="line"><span>{rotator}</span></span>',
-        "zh": f'<span class="line"><span>会计与税务，</span></span><span class="line"><span>用{rotator}</span></span><span class="line"><span>讲得清清楚楚。</span></span>',
-        "ko": f'<span class="line"><span>회계와 세무,</span></span><span class="line"><span>{rotator} 상담으로</span></span><span class="line"><span>쉽고 명확하게.</span></span>',
-    }[lang]
+    h1 = lines(r(L("Precise accounts.|Clear advice.|<em>In your language.</em>",
+                   "账目精准，|建议清晰，|<em>用您的语言沟通。</em>",
+                   "정확한 회계,|명확한 조언,|<em>익숙한 언어로.</em>"), lang))
 
     rows = "".join(f"""
       <li><a href="services.html#{s['id']}" class="svc-row">
@@ -129,7 +118,7 @@ def home(lang):
 
     body = f"""
 <section class="hero dark" data-hero>
-  <div class="hero-diamond" data-parallax>{DIAMOND_SVG}</div>
+  <div class="hero-diamond">{DIAMOND_SVG}</div>
   <div class="wrap hero-inner">
     <ul class="hero-tags reveal-up">
       <li>ACCA {r(L('certified', '认证', '인증'), lang)}</li>
@@ -140,7 +129,7 @@ def home(lang):
     <div class="hero-bottom">
       <p class="hero-lead reveal-up">{r(L('ACCA-certified accountants for sole traders, limited companies, online sellers, landlords and charities.', '为自雇人士、有限公司、跨境电商、房东及慈善机构服务的 ACCA 认证会计师。', '자영업자, 법인, 온라인 셀러, 임대인, 자선단체를 위한 ACCA 인증 회계사.'), lang)}</p>
       <div class="hero-actions reveal-up">
-        <a class="btn btn-gold" href="contact.html" data-magnetic><span>{r(L('Book a consultation', '预约咨询', '상담 예약'), lang)}</span>{ICON['arrow']}</a>
+        <a class="btn btn-gold" href="contact.html"><span>{r(L('Book a consultation', '预约咨询', '상담 예약'), lang)}</span>{ICON['arrow']}</a>
         <a class="btn-text" href="services.html">{roll_text(r(L('Explore services', '浏览服务', '서비스 보기'), lang))}</a>
       </div>
       <div class="hero-live reveal-up">
@@ -152,15 +141,19 @@ def home(lang):
       </div>
     </div>
   </div>
-  <a class="scroll-cue" href="#intro" aria-label="Scroll"><span></span></a>
 </section>
 
-{marquee()}
+<section class="accred-sec accred-top" aria-label="{r(L('Professional memberships', '专业资格', '전문 자격'), lang)}">
+  <div class="wrap accred-inner">
+    <p class="accred-k">{r(L('Regulated &amp; accredited', '专业认证', '공인 자격'), lang)}</p>
+    {accreditation_strip(lang)}
+  </div>
+</section>
 
 <section class="section statement-sec" id="intro">
   <div class="wrap">
     {label(1, L('Who we are', '关于我们', '회사 소개'), lang)}
-    <p class="statement" data-scrub>{statement}</p>
+    <p class="statement">{statement}</p>
     <ul class="stats">{stats_html}</ul>
   </div>
 </section>
@@ -216,18 +209,12 @@ def home(lang):
   </div>
 </section>
 
-<section class="accred-sec">
-  <div class="wrap accred-inner">
-    <p class="accred-k">{r(L('Members of', '专业协会会员', '소속 협회'), lang)}</p>
-    {accreditation_strip(lang)}
-  </div>
-</section>
 
 <section class="section cta-sec">
   <div class="wrap">
     {label(5, L('Contact', '联系我们', '문의하기'), lang)}
-    <a class="giant-cta" href="contact.html" data-cursor="go">
-      <span class="giant-cta-t split">{lines(r(L('Let’s talk.', '聊一聊。', '이야기해요.'), lang))}</span>
+    <a class="giant-cta" href="contact.html">
+      <span class="giant-cta-t split">{lines(r(L('Book a|consultation.', '预约|咨询。', '상담을|예약하세요.'), lang))}</span>
       <span class="giant-cta-c">{ICON['arrow-ne']}</span>
     </a>
     <div class="cta-grid">
@@ -313,7 +300,7 @@ def about(lang):
                      L('A New Malden|firm, since 2014.', '扎根新莫尔登，|始于 2014 年。', '2014년부터|뉴몰든에서.')) + f"""
 <section class="section">
   <div class="wrap">
-    <p class="statement" data-scrub>{r(L('KY Accountancy provides a complete range of accounting services to private individuals and small to medium-sized businesses in the United Kingdom.', 'KY 会计师事务所为英国的个人及中小企业提供全面的会计服务。', 'KY Accountancy는 영국의 개인 및 중소기업에 종합 회계 서비스를 제공합니다.'), lang)}</p>
+    <p class="statement">{r(L('KY Accountancy provides a complete range of accounting services to private individuals and small to medium-sized businesses in the United Kingdom.', 'KY 会计师事务所为英国的个人及中小企业提供全面的会计服务。', 'KY Accountancy는 영국의 개인 및 중소기업에 종합 회계 서비스를 제공합니다.'), lang)}</p>
     <div class="two-col prose">
       <p class="reveal-up">{r(L('We’re based on the High Street in New Malden, home to London’s Korean community, and serve clients across London and the UK. Since 2014 we’ve grown into one of the fastest-growing accountancy firms in south-west London, built on good relationships and word of mouth.', '我们位于伦敦西南部著名的韩国城——新莫尔登（New Malden）商业街，服务遍及伦敦及全英国。自 2014 年成立以来，凭借良好的客户关系与口碑，我们已成为伦敦西南部发展最快的会计师事务所之一。', '저희는 런던 한인타운으로 잘 알려진 뉴몰든 하이 스트리트에 있으며, 런던과 영국 전역의 고객을 돕고 있습니다. 2014년 설립 이후 고객과의 신뢰와 입소문을 바탕으로 런던 남서부에서 가장 빠르게 성장하는 회계 사무소 중 하나가 되었습니다.'), lang)}</p>
       <p class="reveal-up">{r(L('Our accountants have worked across many industries, in finance departments from small businesses to multinational headquarters. We work with sole traders, limited companies, foreign-owned businesses, cross-border e-commerce sellers and charities — in English, Chinese and Korean.', '我们的会计师拥有丰富的专业经验，曾任职于不同行业、从中小企业到跨国公司总部的财务部门。我们的客户包括自雇人士、中小型有限公司、外资企业、跨境电商及慈善机构，并可用中文、英语和韩语沟通。', '저희 회계사들은 다양한 업종에서 중소기업부터 다국적 기업 본사 재무팀까지 폭넓은 경험을 쌓았습니다. 자영업자, 법인, 외국계 기업, 해외 전자상거래 셀러, 자선단체를 한국어, 영어, 중국어로 지원합니다.'), lang)}</p>
@@ -334,7 +321,7 @@ def about(lang):
     </div>
     <div>
       <p class="reveal-up">{r(L('The Association of Chartered Certified Accountants (ACCA) was founded in 1904 and is one of the UK’s chartered accountancy bodies, recognised around the world. You can check our firm on the ACCA register.', '英国皇家特许公认会计师公会（ACCA）成立于 1904 年，是英国具有皇家特许资格的会计师组织之一，享誉全球。您可在 ACCA 官网查询我们事务所的资料。', 'ACCA(국제공인회계사협회)는 1904년에 설립된 영국 왕실 인가 회계사 단체로, 전 세계적으로 인정받고 있습니다. ACCA 웹사이트에서 저희 사무소 정보를 확인하실 수 있습니다.'), lang)}</p>
-      <p><a class="btn btn-gold" href="{ACCA_URL}" rel="noopener" target="_blank" data-magnetic><span>{r(L('View our ACCA firm details', '查看 ACCA 事务所资料', 'ACCA 사무소 정보 보기'), lang)}</span>{ICON['arrow-ne']}</a></p>
+      <p><a class="btn btn-gold" href="{ACCA_URL}" rel="noopener" target="_blank"><span>{r(L('View our ACCA firm details', '查看 ACCA 事务所资料', 'ACCA 사무소 정보 보기'), lang)}</span>{ICON['arrow-ne']}</a></p>
       <div class="accred-light">{accreditation_strip(lang)}</div>
     </div>
   </div>
@@ -345,7 +332,7 @@ def about(lang):
       {label(4, L('Visit', '到访', '방문'), lang)}
       <h2 class="h-lg split">{lines('39–41 High Street,|New Malden')}</h2>
       <p class="muted">{'<br>'.join(ADDRESS)}</p>
-      <p><a class="btn btn-dark" href="{MAPS_URL}" rel="noopener" target="_blank" data-magnetic><span>{r(UI['directions'], lang)}</span>{ICON['arrow-ne']}</a></p>
+      <p><a class="btn btn-dark" href="{MAPS_URL}" rel="noopener" target="_blank"><span>{r(UI['directions'], lang)}</span>{ICON['arrow-ne']}</a></p>
     </div>
     <div class="visit-card">
       {status_chip(lang)}
@@ -391,7 +378,7 @@ def news(lang):
     </div>
     <div>
       <p class="reveal-up">{r(L('We have no open vacancies right now. We’re always happy to hear from accountants who speak Chinese or Korean.', '目前暂无空缺职位。我们随时欢迎会说中文或韩语的会计人才。', '현재 채용 중인 포지션은 없습니다. 한국어 또는 중국어가 가능한 회계사의 지원은 언제나 환영합니다.'), lang)}</p>
-      <a class="btn btn-gold" href="mailto:{EMAIL}?subject=CV" data-magnetic><span>{r(L('Send your CV', '发送简历', '이력서 보내기'), lang)}</span>{ICON['arrow']}</a>
+      <a class="btn btn-gold" href="mailto:{EMAIL}?subject=CV"><span>{r(L('Send your CV', '发送简历', '이력서 보내기'), lang)}</span>{ICON['arrow']}</a>
     </div>
   </div>
 </section>"""
@@ -430,7 +417,7 @@ def contact(lang):
       </div>
       <div class="field"><textarea id="f-msg" name="message" rows="4" placeholder=" " required></textarea><label for="f-msg">{r(L('Tell us about your situation', '请简述您的情况', '상황을 알려주세요'), lang)}</label></div>
       <p class="form-error" data-form-error hidden>{r(L('Please fill in your name, email and message.', '请填写姓名、电邮及留言内容。', '이름, 이메일, 문의 내용을 입력해 주세요.'), lang)}</p>
-      <button class="btn btn-dark btn-lg" type="submit" data-magnetic><span>{r(L('Send message', '发送', '보내기'), lang)}</span>{ICON['arrow']}</button>
+      <button class="btn btn-dark btn-lg" type="submit"><span>{r(L('Send message', '发送', '보내기'), lang)}</span>{ICON['arrow']}</button>
       <p class="fine">{r(L('This opens your email app with your message ready to send to', '点击后将打开您的电邮程序，信息将发送至', '이메일 앱이 열리며 다음 주소로 메시지가 작성됩니다:'), lang)} {EMAIL}.</p>
     </form>
     <aside class="contact-side">

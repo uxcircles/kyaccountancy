@@ -1,37 +1,12 @@
-/* KY Accountancy — motion, menu, open-now status, HMRC deadlines, company date calculator, contact form */
+/* KY Accountancy — reveals, menu, open-now status, HMRC deadlines, company date calculator, contact form */
 (function () {
   var T = window.KY || {};
   var doc = document.documentElement;
   var LANG = doc.lang || "en-GB";
   var LOCALE = LANG.indexOf("zh") === 0 ? "zh-CN" : LANG.indexOf("ko") === 0 ? "ko-KR" : "en-GB";
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
-  function store(k, v) {
-    try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); }
-    catch (e) { return null; }
-  }
-
-  // ---------------------------------------------------------------- page transition
-  var curtain = $(".curtain");
-  if (!reduced && store("ky-nav")) { document.body.classList.add("is-entering"); }
-  store("ky-nav", null);
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a[href]");
-    if (!a || reduced || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    if (a.target === "_blank" || a.hasAttribute("download")) return;
-    var url = new URL(a.href, location.href);
-    if (url.origin !== location.origin || !/^https?:$/.test(url.protocol)) return;
-    if (url.pathname === location.pathname && url.hash) return;
-    e.preventDefault();
-    store("ky-nav", "1");
-    curtain.classList.add("is-leaving");
-    setTimeout(function () { location.href = url.href; }, 560);
-  });
-  window.addEventListener("pageshow", function (e) {
-    if (e.persisted) { curtain.classList.remove("is-leaving"); document.body.classList.remove("is-entering"); }
-  });
 
   // ---------------------------------------------------------------- header & menu
   var header = $("[data-header]");
@@ -63,51 +38,13 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -10% 0px" });
-    var delay = document.body.classList.contains("is-entering") ? 450 : 80;
-    setTimeout(function () { revealables.forEach(function (el) { io.observe(el); }); }, delay);
+    revealables.forEach(function (el) {
+      if (el.closest(".hero, .page-hero")) requestAnimationFrame(function () { el.classList.add("is-in"); });
+      else io.observe(el);
+    });
   } else {
     revealables.forEach(function (el) { el.classList.add("is-in"); });
   }
-
-  // ---------------------------------------------------------------- rotating language word
-  $$(".rotator").forEach(function (el) {
-    var words = (el.getAttribute("data-words") || "").split("|");
-    var span = el.firstElementChild;
-    var i = 0;
-    if (words.length < 2) return;
-    setInterval(function () {
-      if (document.hidden) return;
-      i = (i + 1) % words.length;
-      if (reduced) { span.textContent = words[i]; return; }
-      el.classList.add("is-out");
-      setTimeout(function () {
-        span.textContent = words[i];
-        el.classList.remove("is-out");
-        el.classList.add("is-pre");
-        void span.offsetWidth;
-        el.classList.remove("is-pre");
-      }, 420);
-    }, 2800);
-  });
-
-  // ---------------------------------------------------------------- statement: words light up on scroll
-  var scrubs = $$("[data-scrub]");
-  scrubs.forEach(function (p) {
-    var cjk = /zh/.test(LANG);
-    var text = p.textContent;
-    var parts = cjk ? Array.from(text) : text.split(/(\s+)/);
-    p.textContent = "";
-    var sr = document.createElement("span");
-    sr.className = "sr"; sr.textContent = text;
-    p.appendChild(sr);
-    parts.forEach(function (w) {
-      if (/^\s+$/.test(w)) { p.appendChild(document.createTextNode(w)); return; }
-      var s = document.createElement("span");
-      s.className = "w"; s.textContent = w; s.setAttribute("aria-hidden", "true");
-      p.appendChild(s);
-    });
-    p._words = $$(".w", p);
-  });
 
   // ---------------------------------------------------------------- count-up stats
   var londonYear = +new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", year: "numeric" }).format(new Date());
@@ -120,7 +57,7 @@
         cio.unobserve(en.target);
         var el = en.target, end = +el.getAttribute("data-count"), t0 = performance.now();
         (function tick(t) {
-          var k = Math.min(1, (t - t0) / 1600), e = 1 - Math.pow(1 - k, 4);
+          var k = Math.min(1, (t - t0) / 1200), e = 1 - Math.pow(1 - k, 4);
           el.textContent = Math.round(end * e);
           if (k < 1) requestAnimationFrame(tick);
         })(t0);
@@ -130,7 +67,6 @@
   }
 
   // ---------------------------------------------------------------- scroll-linked effects
-  var diamonds = $$("[data-parallax] .diamond");
   var steps = $("[data-progress]");
   var ticking = false;
   function progress(el, start, end) {
@@ -141,53 +77,11 @@
   function onScroll() {
     ticking = false;
     onHeader();
-    var sp = window.scrollY / window.innerHeight;
-    diamonds.forEach(function (d) { d.style.setProperty("--sp", sp.toFixed(3)); });
-    scrubs.forEach(function (p) {
-      var k = reduced ? 1 : progress(p, .85, .45);
-      var n = Math.round(k * p._words.length);
-      p._words.forEach(function (w, i) { w.classList.toggle("on", i < n); });
-    });
     if (steps) steps.style.setProperty("--p", progress(steps, .7, .5).toFixed(3));
   }
   window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   window.addEventListener("resize", onScroll);
   onScroll();
-
-  // ---------------------------------------------------------------- pointer: parallax, magnetic, cursor
-  if (finePointer && !reduced) {
-    doc.classList.add("has-cursor");
-    var cursor = $(".cursor"), cx = innerWidth / 2, cy = innerHeight / 2, ptx = cx, pty = cy;
-    cursor.classList.add("is-hidden");
-    window.addEventListener("pointermove", function (e) {
-      ptx = e.clientX; pty = e.clientY;
-      var nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5;
-      diamonds.forEach(function (d) { d.style.setProperty("--mx", (nx * -40).toFixed(1) + "px"); d.style.setProperty("--my", (ny * -40).toFixed(1) + "px"); });
-      var t = e.target.closest ? e.target.closest("a, button, input, select, textarea, label") : null;
-      cursor.classList.toggle("is-link", !!t && !t.closest("[data-cursor='go']"));
-      cursor.classList.toggle("is-go", !!(e.target.closest && e.target.closest("[data-cursor='go']")));
-      cursor.classList.toggle("is-hidden", !!t && /INPUT|SELECT|TEXTAREA/.test(t.tagName));
-    });
-    document.addEventListener("pointerleave", function () { cursor.classList.add("is-hidden"); });
-    document.addEventListener("pointerenter", function () { cursor.classList.remove("is-hidden"); });
-    (function loop() {
-      cx += (ptx - cx) * .2; cy += (pty - cy) * .2;
-      cursor.style.transform = "translate3d(" + cx.toFixed(1) + "px," + cy.toFixed(1) + "px,0)";
-      requestAnimationFrame(loop);
-    })();
-    $$("[data-magnetic]").forEach(function (el) {
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        var x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
-        el.style.transform = "translate(" + (x * .25).toFixed(1) + "px," + (y * .35).toFixed(1) + "px)";
-      });
-      el.addEventListener("pointerleave", function () {
-        el.style.transition = "transform .7s cubic-bezier(.16,1,.3,1), color .5s";
-        el.style.transform = "";
-        setTimeout(function () { el.style.transition = ""; }, 700);
-      });
-    });
-  }
 
   // ---------------------------------------------------------------- London time & open status
   function londonNow() {
