@@ -69,10 +69,9 @@ svg { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-widt
 em { font-style: italic; color: var(--gold-2); }
 :lang(zh) em, :lang(ko) em { font-style: normal; }
 
-.label { display: flex; gap: 14px; align-items: baseline; font: 500 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 28px; }
+.label { display: flex; gap: 14px; align-items: baseline; font: 500 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #a8823f; margin: 0 0 28px; }
 :lang(zh) .label, :lang(ko) .label { letter-spacing: .08em; font-size: .88rem; }
-.label-n { font-family: var(--display); font-size: 1.05rem; letter-spacing: 0; color: var(--gold); text-transform: none; }
-.dark .label { color: #8f92b2; }
+.dark .label { color: var(--gold-2); }
 
 /* ---------- reveal (only when JS is running) */
 .split .line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
@@ -265,11 +264,13 @@ a:hover > .roll::after, a:focus-visible > .roll::after { transform: translateY(-
 .dark .fine { color: #7e81a0; }
 
 /* accreditations */
-.accred-sec { padding: 44px 0; border-bottom: 1px solid var(--line); background: var(--white); }
+.accred-sec { padding: 36px 0; border-bottom: 1px solid var(--line); background: var(--white); }
 .accred-inner { display: flex; align-items: center; gap: 48px; }
 .accred-k { margin: 0; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-.accred { list-style: none; margin: 0; padding: 0; display: flex; flex: 1; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px 48px; }
-.accred img { height: 44px; width: auto; mix-blend-mode: multiply; filter: grayscale(1) contrast(1.1); opacity: .6; transition: filter .3s, opacity .3s; }
+.accred { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; justify-items: center; gap: 24px 32px; }
+.accred li { display: grid; place-items: center; height: 56px; }
+.accred img { width: auto; mix-blend-mode: multiply; filter: grayscale(1) contrast(1.1); opacity: .65; transition: filter .3s, opacity .3s; }
+.ac-acca img { height: 40px; } .ac-aat img { height: 30px; } .ac-cisi img { height: 38px; } .ac-aia img { height: 40px; }
 .accred li:hover img { filter: none; opacity: 1; }
 .accred-light { margin-top: 48px; background: var(--white); border-radius: var(--r-lg); padding: 32px; }
 .accred-light .accred img { filter: none; opacity: 1; }
@@ -422,8 +423,9 @@ a:hover > .roll::after, a:focus-visible > .roll::after { transform: translateY(-
   .news-item { grid-template-columns: 1fr; gap: 16px; }
   .news-meta { flex-direction: row; align-items: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .accred-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .accred { justify-content: flex-start; }
+  .accred-inner { flex-direction: column; align-items: stretch; gap: 20px; }
+  .accred-k { text-align: center; }
+  .accred { width: 100%; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
   .two-col { margin-left: 0; gap: 0; }
 }
 @media (max-width: 640px) {

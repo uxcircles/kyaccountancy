@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def label(n, text, lang):
-    return f'<p class="label"><span class="label-n">({n:02d})</span>{r(text, lang)}</p>'
+    return f'<p class="label">{r(text, lang)}</p>'
 
 
 def roll_text(text):
@@ -20,7 +20,7 @@ def roll_text(text):
 
 def accreditation_strip(lang):
     a = asset(lang)
-    imgs = "".join(f'<li><img src="{a}img/{f}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></li>'
+    imgs = "".join(f'<li class="ac-{f.split(".")[0]}"><img src="{a}img/{f}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></li>'
                    for f, alt, w, h in ACCREDITATIONS)
     return f'<ul class="accred">{imgs}</ul>'
 

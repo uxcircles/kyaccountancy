@@ -173,10 +173,11 @@ SERVICES = [
     },
 ]
 
+# (file, alt text, width, height): intrinsic size of the trimmed logo files
 ACCREDITATIONS = [
-    ("acca.jpg", "ACCA", 64, 62), ("aat.jpg", "AAT Licensed Accountant", 146, 40),
-    ("cisi.jpg", "CISI — Chartered Institute for Securities &amp; Investment", 95, 50),
-    ("aia.png", "AIA — Member in Practice", 92, 55),
+    ("acca.jpg", "ACCA", 96, 96), ("aat.jpg", "AAT Licensed Accountant", 317, 73),
+    ("cisi.jpg", "CISI — Chartered Institute for Securities &amp; Investment", 154, 74),
+    ("aia.png", "AIA — Member in Practice", 127, 65),
 ]
 
 
