@@ -51,7 +51,7 @@ Reviewed on kyaccountancy.com (Wix) in October 2026:
 
 ## What the redesign adds
 
-**Design.** An editorial look built from the KY diamond logo: deep navy, gold, warm paper, and oversized Instrument Serif headlines (Noto Serif SC / KR for Chinese and Korean). No stock photos.
+**Design.** An editorial look built from the KY diamond logo: deep navy, gold, warm paper, and Source Serif 4 headlines with Inter for body text (Noto Serif SC / KR for Chinese and Korean). No stock photos.
 
 **Motion** is deliberately restrained, as befits an accountancy firm, and switches off entirely for visitors who ask their device for reduced motion:
 

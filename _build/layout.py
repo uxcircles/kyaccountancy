@@ -231,9 +231,9 @@ def footer(lang, page):
 
 
 FONTS = {
-    "en": "family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600",
-    "zh": "family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600",
-    "ko": "family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Serif+KR:wght@500;600",
+    "en": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600",
+    "zh": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600",
+    "ko": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&family=Noto+Serif+KR:wght@500;600",
 }
 
 
