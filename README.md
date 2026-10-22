@@ -61,7 +61,7 @@ Reviewed on kyaccountancy.com (Wix) in October 2026:
 - A gold progress line runs down the "How we work" steps
 - Quiet hover states: service rows tint and their arrow turns navy
 
-The home page hero pairs the headline with a warm ivory **office card** with a gold top rule, laid out like a ledger: open/closed status, then phone, WeChat/WhatsApp and ACCA verification as full-width rows with gold icons (arrows only on the rows that take you elsewhere), and the next HMRC deadline with a countdown. The accreditation logos (ACCA, AAT, CISI, AIA) sit directly under the hero, in greyscale until hovered. If the firm can supply photos of the team or the office, a photo would be a stronger hero than the card.
+The home page hero pairs the headline with a warm ivory **office card** with a gold top rule, laid out like a ledger: open/closed status, then phone, WeChat/WhatsApp and ACCA verification as full-width rows with gold icons, and the next HMRC deadline with a countdown. The accreditation logos (ACCA, AAT, CISI, AIA) sit directly under the hero, in greyscale until hovered. If the firm can supply photos of the team or the office, a photo would be a stronger hero than the card.
 
 **Useful features:**
 
