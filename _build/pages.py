@@ -130,14 +130,16 @@ def home(lang):
     </div>
     <aside class="hero-card reveal-up" aria-label="{r(L('Office at a glance', '办公室概览', '사무실 안내'), lang)}">
       {status_chip(lang)}
-      <dl class="hc-rows">
-        <div><dt>{r(L('Phone', '电话', '전화'), lang)}</dt><dd><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></dd></div>
-        <div><dt>{r(L('WeChat · WhatsApp', '微信 · WhatsApp', 'WeChat · WhatsApp'), lang)}</dt><dd><a href="contact.html#chat">{r(L('Add us', '添加我们', '추가하기'), lang)} →</a></dd></div>
-        <div><dt>ACCA</dt><dd><a href="{ACCA_URL}" rel="noopener" target="_blank">{r(L('Certified firm · verify', '认证事务所 · 查询', '인증 사무소 · 확인'), lang)} ↗</a></dd></div>
-      </dl>
+      <ul class="hc-list">
+        <li>{ICON['phone']}<a href="tel:{PHONE_TEL}">{PHONE_INTL}</a></li>
+        <li>{ICON['mail']}<a href="mailto:{EMAIL}">{EMAIL}</a></li>
+        <li>{ICON['pin']}<a href="{MAPS_URL}" rel="noopener" target="_blank">{'<br>'.join(ADDRESS[1:])}</a></li>
+      </ul>
       <a class="hc-deadline" href="#key-dates" data-next-deadline hidden>
         <span class="hc-k">{r(L('Next HMRC deadline', '下一个 HMRC 截止日', '다음 HMRC 마감일'), lang)}</span>
-        <span class="hc-v"><b data-dl-date></b><span data-dl-in></span></span>
+        <strong data-dl-date></strong>
+        <span class="hc-label" data-dl-label></span>
+        <span class="hc-pill" data-dl-in></span>
       </a>
     </aside>
   </div>
