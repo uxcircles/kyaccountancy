@@ -144,26 +144,25 @@ a:hover > .roll::after, a:focus-visible > .roll::after { transform: translateY(-
 .hero-eyebrow { color: #a3a6c4; }
 .hero-lead { margin: clamp(28px, 4vh, 44px) 0 0; max-width: 30em; color: #b7bad4; font-size: 1.1rem; }
 .hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 32px; color: #fff; }
-.js .hero .hero-card { position: relative; background: #fff; color: var(--text); border-radius: 18px; padding: 26px; box-shadow: 0 30px 60px -20px rgb(0 0 0 / .5); }
-.hero-card::before { content: ""; position: absolute; top: -10px; right: 10px; width: 56px; height: 56px; border: 1.5px solid var(--gold); border-radius: 4px; transform: rotate(45deg); opacity: .8; }
-.hero-card .status { background: var(--paper); color: var(--text); border: 0; font-weight: 600; }
-.hero-card .status.is-open { background: #e5f3ea; color: #1d5e3b; }
-.hero-card .status.is-open .dot { background: #2f8f5b; }
-.hero-card .status.is-closed { background: #f6e8e2; color: #6b3a2e; }
-.hero-card .status.is-closed .dot { background: #b5432f; }
-.hc-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 14px; }
-.hc-list li { display: flex; gap: 12px; align-items: flex-start; }
-.hc-list svg { color: var(--gold); margin-top: 4px; width: 1.2em; height: 1.2em; }
-.hc-list a { color: var(--text); text-decoration: none; font-weight: 500; overflow-wrap: anywhere; }
-.hc-list small { font-size: .8rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
-.hc-list a:hover { color: var(--navy); text-decoration: underline; }
-.hc-deadline { display: grid; gap: 6px; margin-top: 22px; padding: 18px; border-radius: 12px; background: var(--navy); color: #dfe1f0; text-decoration: none; }
+.js .hero .hero-card { position: relative; padding: 24px 28px 0; background: #161b52; border: 1px solid #2a3070; border-radius: 4px; box-shadow: 0 30px 60px -30px rgb(0 0 0 / .6); }
+.hero-card::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-2), var(--gold)); }
+.hero-card .status { padding: 0; border: 0; background: none; font-size: .92rem; color: #fff; }
+.hero-card svg { width: 17px; height: 17px; }
+.hc-rows { list-style: none; margin: 18px 0 0; padding: 0; }
+.hc-rows li { border-top: 1px solid #2a3070; }
+.hc-rows a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 15px 0; text-decoration: none; font-size: .95rem; }
+.hc-l { display: inline-flex; align-items: center; gap: 10px; color: #9a9dbd; }
+.hc-l svg { color: var(--gold); }
+.hc-v { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-weight: 500; text-align: right; }
+.hc-v svg, .hc-in svg { color: var(--gold-2); transition: transform .3s var(--ease); }
+.hc-rows a:hover .hc-v { color: var(--gold-2); }
+.hc-rows a:hover .hc-v svg, .hc-deadline:hover .hc-in svg { transform: translateX(3px); }
+.hc-deadline { display: grid; gap: 6px; margin: 0 -28px; padding: 16px 28px 18px; border-top: 1px solid #2a3070; background: #10143e; text-decoration: none; color: #dfe1f0; border-radius: 0 0 4px 4px; }
 .hc-deadline[hidden] { display: none; }
-.hc-k { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2); }
-.hc-deadline strong { font: 600 1.3rem/1.2 var(--display); color: #fff; }
-.hc-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-.hc-pill { font-size: .78rem; font-weight: 600; background: var(--gold); color: var(--ink); padding: 3px 10px; border-radius: 999px; }
-.hc-deadline:hover strong { text-decoration: underline; text-decoration-color: var(--gold); }
+.hc-k { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2); }
+.hc-dl { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .95rem; white-space: nowrap; }
+.hc-dl b { font-weight: 600; color: #fff; }
+.hc-in { display: inline-flex; align-items: center; gap: 10px; color: var(--gold-2); }
 .status { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; font-size: .88rem; padding: 8px 14px; border-radius: 999px; background: rgb(255 255 255 / .06); border: 1px solid var(--line-l); color: #dfe1f0; }
 .status .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #8f92b2; }
 .status.is-open .dot { background: var(--green); }
