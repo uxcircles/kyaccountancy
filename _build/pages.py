@@ -129,24 +129,17 @@ def home(lang):
       </div>
     </div>
     <aside class="hero-card reveal-up" aria-label="{r(L('Office at a glance', '办公室概览', '사무실 안내'), lang)}">
-      <div class="hc-top">
-        {status_chip(lang)}
-        <span class="hc-hours">{r(L('Mon–Fri · 9:00–17:30', '周一至周五 · 9:00–17:30', '월–금 · 9:00–17:30'), lang)}</span>
-      </div>
-      <a class="hc-deadline" href="#key-dates" data-next-deadline hidden>
-        <span class="hc-k">{r(L('Next HMRC deadline', '下一个 HMRC 截止日', '다음 HMRC 마감일'), lang)}</span>
-        <span class="hc-num"><b data-dl-days></b><span data-dl-unit></span></span>
-        <span class="hc-date" data-dl-date></span>
-        <span class="hc-label" data-dl-label></span>
-      </a>
+      {status_chip(lang)}
       <dl class="hc-rows">
         <div><dt>{r(L('Phone', '电话', '전화'), lang)}</dt><dd><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></dd></div>
         <div><dt>{r(L('WeChat · WhatsApp', '微信 · WhatsApp', 'WeChat · WhatsApp'), lang)}</dt><dd><a href="contact.html#chat">{r(L('Add us', '添加我们', '추가하기'), lang)} →</a></dd></div>
-        <div><dt>{r(L('Languages', '服务语言', '상담 언어'), lang)}</dt><dd>English · 中文 · 한국어</dd></div>
       </dl>
       <a class="hc-acca" href="{ACCA_URL}" rel="noopener" target="_blank">
         <img src="{asset(lang)}img/acca.jpg" alt="ACCA" width="40" height="39">
         <span><strong>{r(L('ACCA certified firm', 'ACCA 认证事务所', 'ACCA 인증 사무소'), lang)}</strong><small>{r(L('Check us on the ACCA register', '在 ACCA 官网查询我们', 'ACCA 등록부에서 확인하기'), lang)} ↗</small></span>
+      </a>
+      <a class="hc-deadline" href="#key-dates" data-next-deadline hidden>
+        <span>{r(L('Next HMRC deadline', '下一个 HMRC 截止日', '다음 HMRC 마감일'), lang)}: <b data-dl-date></b> · <span data-dl-in></span></span><span aria-hidden="true">→</span>
       </a>
     </aside>
   </div>
