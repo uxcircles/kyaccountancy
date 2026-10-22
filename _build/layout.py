@@ -1,5 +1,7 @@
 """Shared header, footer and page shell for every language."""
+import hashlib
 import json
+import os
 
 LANGS = {
     "en": {"dir": "", "html": "en-GB", "label": "EN", "name": "English"},
@@ -163,6 +165,15 @@ def roll(text):
     return f'<span class="roll" data-text="{text}"><span>{text}</span></span>'
 
 
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def ver(rel):
+    """Short content hash for cache-busting ?v= query strings."""
+    with open(os.path.join(_ROOT, "assets", rel), "rb") as f:
+        return hashlib.sha1(f.read()).hexdigest()[:8]
+
+
 def asset(lang):
     return ("../" if LANGS[lang]["dir"] else "") + "assets/"
 
@@ -278,7 +289,7 @@ def page(lang, name, title, description, body, body_class=""):
 <link rel="icon" type="image/png" href="{a}img/favicon.png">
 <link rel="apple-touch-icon" href="{a}img/apple-touch-icon.jpg">
 {preloads}
-<link rel="stylesheet" href="{a}css/style.css">
+<link rel="stylesheet" href="{a}css/style.css?v={ver("css/style.css")}">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">{schema}</script>
 </head>
@@ -289,7 +300,7 @@ def page(lang, name, title, description, body, body_class=""):
 </main>
 {footer(lang, name)}
 <script>window.KY = {js};</script>
-<script src="{a}js/main.js" defer></script>
+<script src="{a}js/main.js?v={ver("js/main.js")}" defer></script>
 </body>
 </html>
 """

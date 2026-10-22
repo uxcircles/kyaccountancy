@@ -38,6 +38,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 90px; }
+html { overflow-x: hidden; }
 body { margin: 0; background: var(--paper); color: var(--text); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 :lang(zh) body, :lang(ko) body { line-height: 1.85; }
 :lang(ko) body { word-break: keep-all; }
@@ -411,6 +412,8 @@ a:hover > .roll::after, a:focus-visible > .roll::after { transform: translateY(-
   .value, .value + .value { padding: 32px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .value h3 { margin-top: 16px; }
   .svc-layout { grid-template-columns: minmax(0, 1fr); padding-top: 0; gap: 0; }
+  .svc-layout > * { min-width: 0; max-width: 100%; }
+  .toc ul { max-width: 100vw; }
   .toc { position: sticky; top: 84px; z-index: 5; margin: 0 calc(var(--gutter) * -1) 56px; background: var(--paper); border-bottom: 1px solid var(--line); }
   .toc ul { display: flex; overflow-x: auto; gap: 0; padding: 0 var(--gutter); scrollbar-width: none; }
   .toc a { white-space: nowrap; padding: 16px 12px; font-size: .9rem; }
