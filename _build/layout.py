@@ -232,10 +232,11 @@ def footer(lang, page):
 </nav>"""
 
 
-FONTS = {
-    "en": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600",
-    "zh": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600",
-    "ko": "family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&family=Noto+Serif+KR:wght@500;600",
+# Fonts are self-hosted subsets built by _build/fonts.py; preload what the hero needs first.
+PRELOAD = {
+    "en": ["source-serif", "inter-400"],
+    "zh": ["source-serif", "noto-serif-sc-500"],
+    "ko": ["source-serif", "noto-serif-kr-500"],
 }
 
 
@@ -248,6 +249,8 @@ def page(lang, name, title, description, body, body_class=""):
     )
     canonical = f'{SITE}{meta["dir"]}{"" if name == "index.html" else name}'
     js = json.dumps(JS_STRINGS[lang], ensure_ascii=False)
+    preloads = "\n".join(f'<link rel="preload" href="{a}fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>'
+                          for f in PRELOAD[lang])
     schema = json.dumps({
         "@context": "https://schema.org", "@type": "AccountingService",
         "name": "KY Accountancy Services Ltd", "url": SITE, "telephone": PHONE_INTL, "email": EMAIL,
@@ -274,9 +277,7 @@ def page(lang, name, title, description, body, body_class=""):
 <meta name="theme-color" content="#0b0e2c">
 <link rel="icon" type="image/png" href="{a}img/favicon.png">
 <link rel="apple-touch-icon" href="{a}img/apple-touch-icon.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{FONTS[lang]}&display=swap">
+{preloads}
 <link rel="stylesheet" href="{a}css/style.css">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">{schema}</script>

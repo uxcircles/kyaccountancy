@@ -36,6 +36,14 @@ Rebuild after editing (Python 3, no dependencies):
 python3 _build/pages.py
 ```
 
+**Fonts** are self-hosted subsets in `assets/fonts/`, built by `_build/fonts.py` (needs `pip install fonttools brotli`). The Chinese and Korean heading fonts contain only the characters used on the site, so **after adding or changing Chinese or Korean text, also run**:
+
+```bash
+python3 _build/fonts.py
+```
+
+Otherwise new characters fall back to the system serif font.
+
 ## What this fixes on the current site
 
 Reviewed on kyaccountancy.com (Wix) in October 2026:
@@ -79,6 +87,8 @@ The home page hero pairs the headline with a warm ivory **office card** laid out
 _build/layout.py     header, footer, page shell, contact details, UI strings
 _build/content.py    services, accreditations, news (three languages side by side)
 _build/pages.py      page templates
+_build/fonts.py      builds the self-hosted font subsets
+assets/fonts/        Source Serif 4, Inter, Noto Serif SC / KR (subset WOFF2)
 assets/css/style.css
 assets/js/main.js    reveals, menu, open-now status, deadlines, calculator, form
 ```
