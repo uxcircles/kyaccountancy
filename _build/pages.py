@@ -78,7 +78,6 @@ def home(lang):
 
     rows = "".join(f"""
       <li><a href="services.html#{s['id']}" class="svc-row">
-        <span class="svc-n">{i:02d}</span>
         <span class="svc-t">{r(s['name'], lang)}</span>
         <span class="svc-d">{r(s['short'], lang)}</span>
         <span class="svc-a">{ICON['arrow-ne']}</span>
@@ -240,7 +239,7 @@ def home(lang):
 
 # ---------------------------------------------------------------- services
 def services(lang):
-    toc = "".join(f'<li><a href="#{s["id"]}"><span>{i:02d}</span>{r(s["name"], lang)}</a></li>'
+    toc = "".join(f'<li><a href="#{s["id"]}">{r(s["name"], lang)}</a></li>'
                   for i, s in enumerate(SERVICES, 1))
     sections = ""
     for i, s in enumerate(SERVICES, 1):
@@ -250,7 +249,6 @@ def services(lang):
             note = f'<aside class="note reveal-up"><h3>{r(s["note_title"], lang)}</h3><p>{r(s["note"], lang)}</p></aside>'
         sections += f"""
     <section class="svc-section" id="{s['id']}">
-      <span class="svc-big-n" aria-hidden="true">{i:02d}</span>
       <h2 class="h-lg split">{lines(r(s['name'], lang))}</h2>
       <p class="svc-intro reveal-up">{r(s['intro'], lang)}</p>
       <h3 class="list-h">{r(L('What we do for you', '我们的服务包括', '제공 서비스'), lang)}</h3>
@@ -294,7 +292,7 @@ def about(lang):
            "良好的会计服务不仅仅是簿记，对企业运营、品牌、市场策略及管理同样至关重要。",
            "좋은 회계는 세금 신고뿐 아니라 운영, 브랜드, 전략에도 도움이 됩니다.")),
     ]
-    vals = "".join(f'<li class="value"><span class="value-n">{i:02d}</span><h3>{r(t, lang)}</h3><p>{r(d, lang)}</p></li>'
+    vals = "".join(f'<li class="value"><h3>{r(t, lang)}</h3><p>{r(d, lang)}</p></li>'
                    for i, (t, d) in enumerate(values, 1))
     body = page_hero(lang, 1, L('About us', '关于我们', '회사 소개'),
                      L('A New Malden|firm, since 2014.', '扎根新莫尔登，|始于 2014 年。', '2014년부터|뉴몰든에서.')) + f"""
