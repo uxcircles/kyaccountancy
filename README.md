@@ -55,13 +55,13 @@ Reviewed on kyaccountancy.com (Wix) in October 2026:
 
 **Motion** is deliberately restrained, as befits an accountancy firm, and switches off entirely for visitors who ask their device for reduced motion:
 
-- The KY logo in the hero (redrawn as SVG from the original artwork: measured geometry, traced letters, the logo's own gold and silver) draws itself once, then stays still
+- The KY logo (redrawn as SVG from the original artwork) draws itself once, faintly, behind the inner-page headings
 - Headlines slide up line by line and paragraphs fade in, once, as they come into view
 - Statistics and the HMRC countdown count up once
 - A gold progress line runs down the "How we work" steps
 - Quiet hover states: service rows tint and their arrow turns navy
 
-The accreditation logos (ACCA, AAT, CISI, AIA) sit directly under the hero.
+The home page hero pairs the headline with an **office card**: open/closed status, a countdown to the next HMRC deadline, phone, WeChat/WhatsApp, languages, and a link to verify the firm on the ACCA register. The accreditation logos (ACCA, AAT, CISI, AIA) sit directly under the hero. If the firm can supply photos of the team or the office, a photo would be a stronger hero than the card.
 
 **Useful features:**
 

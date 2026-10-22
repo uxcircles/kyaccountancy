@@ -132,9 +132,13 @@
     var up = upcomingDeadlines(5);
     var label = function (d) { return T.dl[d.key].replace("{ty}", d.ty); };
     $$("[data-next-deadline]").forEach(function (el) {
-      $("[data-dl-date]", el).textContent = longDate(up[0].date);
-      $("[data-dl-in]", el).textContent = inText(daysUntil(up[0].date));
-      el.title = label(up[0]);
+      var n0 = daysUntil(up[0].date);
+      var set = function (sel, text) { var t = $(sel, el); if (t) t.textContent = text; };
+      set("[data-dl-date]", longDate(up[0].date));
+      set("[data-dl-in]", inText(n0));
+      set("[data-dl-days]", n0);
+      set("[data-dl-unit]", n0 === 1 ? T.day : T.days);
+      set("[data-dl-label]", label(up[0]));
       el.hidden = false;
     });
     var cd = $("[data-countdown]");
