@@ -155,13 +155,14 @@ a:hover > .roll::after, a:focus-visible > .roll::after { transform: translateY(-
 .hc-list li { display: flex; gap: 12px; align-items: flex-start; }
 .hc-list svg { color: var(--gold); margin-top: 4px; width: 1.2em; height: 1.2em; }
 .hc-list a { color: var(--text); text-decoration: none; font-weight: 500; overflow-wrap: anywhere; }
+.hc-list small { font-size: .8rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
 .hc-list a:hover { color: var(--navy); text-decoration: underline; }
-.hc-deadline { display: grid; gap: 4px; justify-items: start; margin-top: 22px; padding: 18px; border-radius: 12px; background: var(--navy); color: #dfe1f0; text-decoration: none; }
+.hc-deadline { display: grid; gap: 6px; margin-top: 22px; padding: 18px; border-radius: 12px; background: var(--navy); color: #dfe1f0; text-decoration: none; }
 .hc-deadline[hidden] { display: none; }
-.hc-k { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 4px; }
+.hc-k { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2); }
 .hc-deadline strong { font: 600 1.3rem/1.2 var(--display); color: #fff; }
-.hc-label { font-size: .9rem; color: #c9cbe0; }
-.hc-pill { margin-top: 8px; font-size: .78rem; font-weight: 600; background: var(--gold); color: var(--ink); padding: 3px 10px; border-radius: 999px; }
+.hc-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hc-pill { font-size: .78rem; font-weight: 600; background: var(--gold); color: var(--ink); padding: 3px 10px; border-radius: 999px; }
 .hc-deadline:hover strong { text-decoration: underline; text-decoration-color: var(--gold); }
 .status { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; font-size: .88rem; padding: 8px 14px; border-radius: 999px; background: rgb(255 255 255 / .06); border: 1px solid var(--line-l); color: #dfe1f0; }
 .status .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #8f92b2; }

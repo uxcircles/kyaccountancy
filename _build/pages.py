@@ -131,15 +131,13 @@ def home(lang):
     <aside class="hero-card reveal-up" aria-label="{r(L('Office at a glance', '办公室概览', '사무실 안내'), lang)}">
       {status_chip(lang)}
       <ul class="hc-list">
-        <li>{ICON['phone']}<a href="tel:{PHONE_TEL}">{PHONE_INTL}</a></li>
-        <li>{ICON['mail']}<a href="mailto:{EMAIL}">{EMAIL}</a></li>
-        <li>{ICON['pin']}<a href="{MAPS_URL}" rel="noopener" target="_blank">{'<br>'.join(ADDRESS[1:])}</a></li>
+        <li>{ICON['phone']}<a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li>
+        <li>{ICON['chat']}<a href="contact.html#chat">{r(L('WeChat · WhatsApp', '微信 · WhatsApp', 'WeChat · WhatsApp'), lang)}</a></li>
+        <li>{ICON['shield']}<a href="{ACCA_URL}" rel="noopener" target="_blank">{r(L('ACCA certified firm', 'ACCA 认证事务所', 'ACCA 인증 사무소'), lang)} <small>{r(L('verify', '查询', '확인'), lang)} ↗</small></a></li>
       </ul>
       <a class="hc-deadline" href="#key-dates" data-next-deadline hidden>
         <span class="hc-k">{r(L('Next HMRC deadline', '下一个 HMRC 截止日', '다음 HMRC 마감일'), lang)}</span>
-        <strong data-dl-date></strong>
-        <span class="hc-label" data-dl-label></span>
-        <span class="hc-pill" data-dl-in></span>
+        <span class="hc-row"><strong data-dl-date></strong><span class="hc-pill" data-dl-in></span></span>
       </a>
     </aside>
   </div>
