@@ -62,6 +62,12 @@ UI = {
     "rights": L("All rights reserved.", "版权所有。", "모든 권리 보유."),
     "reg": L("Registered in England and Wales.", "于英格兰及威尔士注册。", "잉글랜드 및 웨일스 등록 법인."),
     "top": L("Back to top", "返回顶部", "맨 위로"),
+    "concept": L("Concept", "概念", "콘셉트"),
+    "concept_long": L('Concept redesign. Not the <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">official KY Accountancy website</a>.',
+                      '概念设计展示，非 <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">KY 会计师事务所官方网站</a>。',
+                      '콘셉트 리디자인입니다. <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">KY Accountancy 공식 웹사이트</a>가 아닙니다.'),
+    "concept_by": L("Designed by ", "设计：", "디자인: "),
+    "concept_note": L("Unofficial redesign concept by", "非官方概念设计，由", "비공식 콘셉트 디자인:"),
 }
 
 # Strings main.js needs (open-now status, deadlines, calculator, form)
@@ -187,6 +193,12 @@ def header(lang, page):
         for i, (href, label) in enumerate(NAV, 1))
     return f"""<a class="skip" href="#main">{r(UI['skip'], lang)}</a>
 <header class="site-header" data-header>
+  <div class="concept-bar" role="note">
+    <div class="wrap concept-inner">
+      <p><span class="concept-tag">{r(UI['concept'], lang)}</span><span class="concept-long">{r(UI['concept_long'], lang)}</span></p>
+      <a href="https://ux-circles.com/web" target="_blank" rel="noopener"><span class="concept-by">{r(UI['concept_by'], lang)}</span><strong>UX CIRCLES</strong> {ICON['arrow-ne']}</a>
+    </div>
+  </div>
   <div class="wrap header-inner">
     <a class="brand" href="./" aria-label="KY Accountancy — home">
       <img src="{a}img/logo-mark.png" alt="" width="34" height="39">
@@ -232,7 +244,7 @@ def footer(lang, page):
   </div>
   <div class="wordmark" aria-hidden="true"><span>KY Accountancy</span></div>
   <div class="wrap footer-base">
-    <span>© <span data-year>2026</span> KY Accountancy Services Ltd. {r(UI['reg'], lang)} {r(UI['rights'], lang)}</span>
+    <span>© <span data-year>2026</span> KY Accountancy Services Ltd. {r(UI['reg'], lang)} {r(UI['rights'], lang)}<br><span class="concept-note">{r(UI['concept_note'], lang)} <a class="u" href="https://ux-circles.com/web" target="_blank" rel="noopener">UX CIRCLES</a></span></span>
     <a href="#main" class="u">{r(UI['top'], lang)} ↑</a>
   </div>
 </footer>
