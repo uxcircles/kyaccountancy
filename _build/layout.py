@@ -66,8 +66,8 @@ UI = {
     "concept_long": L('Concept redesign. Not the <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">official KY Accountancy website</a>.',
                       '概念设计展示，非 <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">KY 会计师事务所官方网站</a>。',
                       '콘셉트 리디자인입니다. <a href="https://www.kyaccountancy.com/" target="_blank" rel="noopener">KY Accountancy 공식 웹사이트</a>가 아닙니다.'),
-    "concept_by": L("Designed by ", "设计：", "디자인: "),
-    "concept_note": L("Unofficial redesign concept by", "非官方概念设计，由", "비공식 콘셉트 디자인:"),
+    "concept_by": L("Designed by ", "设计：", "Designed by "),
+    "concept_note": L("Unofficial redesign concept by ", "非官方概念设计：", "Unofficial redesign concept by "),
 }
 
 # Strings main.js needs (open-now status, deadlines, calculator, form)
@@ -244,7 +244,7 @@ def footer(lang, page):
   </div>
   <div class="wordmark" aria-hidden="true"><span>KY Accountancy</span></div>
   <div class="wrap footer-base">
-    <span>© <span data-year>2026</span> KY Accountancy Services Ltd. {r(UI['reg'], lang)} {r(UI['rights'], lang)}<br><span class="concept-note">{r(UI['concept_note'], lang)} <a class="u" href="https://ux-circles.com/professionals" target="_blank" rel="noopener">UX CIRCLES</a></span></span>
+    <span>© <span data-year>2026</span> KY Accountancy Services Ltd. {r(UI['reg'], lang)} {r(UI['rights'], lang)}<br><span class="concept-note">{r(UI['concept_note'], lang)}<a class="u" href="https://ux-circles.com/professionals" target="_blank" rel="noopener">UX CIRCLES</a></span></span>
     <a href="#main" class="u">{r(UI['top'], lang)} ↑</a>
   </div>
 </footer>
